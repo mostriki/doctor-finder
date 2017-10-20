@@ -3,12 +3,17 @@ let apiKey = require('./../.env').apiKey;
 
 
 $(document).ready(function() {
-  $('#searchButton').click(function() {
-    // let doctor = $('#doctor').val();
-    // $('#doctor').val("");
 
-      let doctorfinder = new DoctorFinder();
+  let doctorfinder = new DoctorFinder();
 
-      doctorfinder.search(doctor, apiKey);
+  $('#searchButton').submit(function() {
+    event.preventDefault();
+
+    // Gather inputted information
+    let doctor = $('#doctor').val();
+    $('#doctor').val("");
+
+
+    doctorfinder.getDoctor(doctor, apiKey);
   });
 });

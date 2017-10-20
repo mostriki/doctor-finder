@@ -1,6 +1,10 @@
 export class DoctorFinder {
+ //  constructor(doctor, condition) {
+ //   this.doctor = doctor;
+ //   this.condition = condition;
+ // }
 
-  search(doctor, apiKey) {
+  getDoctor(doctor, apiKey) {
       let promise = new Promise(function(resolve, reject) {
         let request = new XMLHttpRequest();
         // let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=Imperial&appid=${apiKey}`;
