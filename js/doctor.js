@@ -24,20 +24,26 @@ export class Doctor {
         if (list.meta.count > 0) {
           console.log("Doctor count is 1 or more. Huzzah!");
           // display this name, last name, address, phone number, and website
-          
-          captures first_name data points.
+          // captures first_name data points.
           list.data.forEach(function(x) {
-            console.log(x.profile.first_name)
+            console.log(x.profile.first_name);
+            $('#firstName').html(`<h1>Name: ${x.profile.first_name}</h1>`);
+            // $('#lastName').html();
+            // $('#address').html();
+            // $('#phone').html();
+            // $('#website').html();
           })
-          // debugger;
+          debugger;
           list.data.forEach(function(x) {
   	        x.practices.forEach(function(y) {
               if (y.accepts_new_patients === true) {
                 // post here if they accept new patients
                 console.log(x.profile.first_name + " accepts new patients!");
+                // $('#availability').html();
               } else {
                 // post here if they do not accept new patients
                 console.log(x.profile.first_name + " does not accept new patients!");
+                // $('#availability').html();
               }
             });
           });
@@ -47,7 +53,7 @@ export class Doctor {
       }
     }, function(error) {
       // delivers an error message to the page when the API cannot be called
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+      $('#showErrors').text(`There was an error processing your request: ${error.message}`);
     });
   }
 
