@@ -21,38 +21,40 @@ export class Doctor {
      // this could be its own function
      promise.then(function(response) {
         let list = JSON.parse(response);
+        debugger;
+
         if (list.meta.count > 0) {
           console.log("Doctor count is 1 or more. Huzzah!");
           // display this name, last name, address, phone number, and website
           // captures first_name data points.
           list.data.forEach(function(x) {
             console.log(x.profile.first_name);
-            $('#firstName').html(`<h1>Name: ${x.profile.first_name}</h1>`);
-            // $('#lastName').html();
-            // $('#address').html();
-            // $('#phone').html();
-            // $('#website').html();
+            $('#name').html(`<h1>Dr. ${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h1>`);
+            $('#biography').html(`<h1>${x.profile.bio}</h1>`);
+            $('#specialty').html(`<h1>Specialty: ${x.specialties.name}</h1>`);
+
           })
-          debugger;
-          list.data.forEach(function(x) {
-  	        x.practices.forEach(function(y) {
-              if (y.accepts_new_patients === true) {
-                // post here if they accept new patients
-                console.log(x.profile.first_name + " accepts new patients!");
-                // $('#availability').html();
-              } else {
-                // post here if they do not accept new patients
-                console.log(x.profile.first_name + " does not accept new patients!");
-                // $('#availability').html();
-              }
-            });
+
+	        x.practices.forEach(function(y) {
+            if (y.accepts_new_patients === true) {
+              // post here if they accept new patients
+              console.log(x.profile.first_name + " accepts new patients!");
+              // $('#availability').html();
+            } else {
+              // post here if they do not accept new patients
+              console.log(x.profile.first_name + " does not accept new patients!");
+              // $('#availability').html();
+            }
           });
+
+
+      // post this if there are results in search
       }else {
-        // post this if there are results in search
         console.log("There are no Doctors. Boo.");
       }
+
+    // delivers an error message to the page when the API cannot be called
     }, function(error) {
-      // delivers an error message to the page when the API cannot be called
       $('#showErrors').text(`There was an error processing your request: ${error.message}`);
     });
   }
