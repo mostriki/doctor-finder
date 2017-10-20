@@ -2,9 +2,11 @@ import { DoctorFinder } from './../js/doctor-finder.js';
 let apiKey = require('./../.env').apiKey;
 
 
+
+
+
 $(document).ready(function() {
 
-  let doctorfinder = new DoctorFinder();
 
   $('#searchButton').submit(function() {
     event.preventDefault();
@@ -13,6 +15,7 @@ $(document).ready(function() {
     let doctor = $('#doctor').val();
     $('#doctor').val("");
 
+    let doctorfinder = new DoctorFinder();
 
     doctorfinder.getDoctor(doctor, apiKey);
   });

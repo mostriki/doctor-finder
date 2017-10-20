@@ -4,10 +4,12 @@ export class DoctorFinder {
  //   this.condition = condition;
  // }
 
-  getDoctor(doctor, apiKey) {
+  getDoctor(condition, apiKey) {
       let promise = new Promise(function(resolve, reject) {
         let request = new XMLHttpRequest();
-        // let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=Imperial&appid=${apiKey}`;
+        // let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&query=${condition}&location=45.5206%2C-122.6774%2C50&user_location=45.5206%2C-122.6774&sort=best-match-asc&skip=0&limit=25&user_key=${apiKey}`;
+        // request.onload = function() {
+        let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=45.5206%2C-122.6774%2C50&user_location=45.5206%2C-122.6774&sort=best-match-asc&skip=0&limit=25&user_key=${apiKey}`;
         request.onload = function() {
           if (this.status === 200) {
             resolve(request.response);
@@ -20,16 +22,16 @@ export class DoctorFinder {
       });
 
       promise.then(function(response) {
-        let body = JSON.parse(response);
+        let doctor = JSON.parse(response);
 
       //   let arr = [];
-      //   body.weather.forEach(function(x) {
+      //   doctor.weather.forEach(function(x) {
       //     $('.condition').append(`<li>The weather ${x.icon} conditon indicates ${x.description}.</li>` );
       //
       //   });
       //
-      // $('.showHumidity').text(`The humidity in ${city} is ${body.main.humidity}%`);
-      // $('.showTemp').text(`The temperature in Fahrenheit is ${body.main.temp} degrees.`);
+      // $('.showHumidity').text(`The humidity in ${city} is ${doctor.main.humidity}%`);
+      $('.doctorOutput').text(`The temperature in Fahrenheit is ${doctor.query} degrees.`);
 
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
