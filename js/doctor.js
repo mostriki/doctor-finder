@@ -23,30 +23,28 @@ export class Doctor {
         let list = JSON.parse(response);
         if (list.meta.count > 0) {
           console.log("Doctor count is 1 or more. Huzzah!");
-        // display this name, last name, address, phone number, website and  whether or not the doctor is accepting new patients
-
-          debugger;
+          // display this name, last name, address, phone number, and website
+          
+          captures first_name data points.
+          list.data.forEach(function(x) {
+            console.log(x.profile.first_name)
+          })
+          // debugger;
           list.data.forEach(function(x) {
   	        x.practices.forEach(function(y) {
               if (y.accepts_new_patients === true) {
+                // post here if they accept new patients
                 console.log(x.profile.first_name + " accepts new patients!");
               } else {
-                console.log(x.profile.first_name + " doe snot accept new patients!");
+                // post here if they do not accept new patients
+                console.log(x.profile.first_name + " does not accept new patients!");
               }
             });
           });
       }else {
+        // post this if there are results in search
         console.log("There are no Doctors. Boo.");
       }
-
-
-      // captures first_name data points.
-      // list.data.forEach(function(x) {
-      //   console.log(x.profile.first_name)
-      // })
-
-
-
     }, function(error) {
       // delivers an error message to the page when the API cannot be called
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
