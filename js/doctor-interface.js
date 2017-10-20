@@ -15,8 +15,3 @@ $(document).ready(function() {
     doctor.betterDoctorAPI(condition, apiKey);
   });
 });
-
-// captures first_name data points.
-// list.data.forEach(function(x) {
-//   console.log(x.profile.first_name)
-// })
