@@ -10,14 +10,13 @@ $(document).ready(function() {
     let condition = $('#condition').val();
     $('#condition').val("");
     console.log(condition);
-    // debugger;
 
 
-      doctor.testAPI(condition, apiKey);
+    doctor.betterDoctorAPI(condition, apiKey);
   });
 });
 
 // captures first_name data points.
-list.data.forEach(function(x) {
-  console.log(x.profile.first_name)
-})
+// list.data.forEach(function(x) {
+//   console.log(x.profile.first_name)
+// })
