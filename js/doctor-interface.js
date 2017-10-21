@@ -9,9 +9,14 @@ $(document).ready(function() {
 
     let condition = $('#condition').val();
     $('#condition').val("");
-    console.log(condition);
-
+    $("#details").hide();
 
     doctor.betterDoctorAPI(condition, apiKey);
   });
+
+  $("#name").click(function() {
+    event.preventDefault();
+    $("#details").toggle();
+  });
+
 });

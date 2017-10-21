@@ -27,15 +27,15 @@ export class Doctor {
           // captures first_name data points.
           list.data.forEach(function(x) {
             console.log(x.profile.first_name);
-            $('#name').html(`<h4>${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h4>`);
+            $('#name').html(`<h4 >${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h4>`);
             $('#specialty').html(`<h6>Specialty: ${x.specialties[0].actor}</h6>`);
             $('#biography').html(`<p>${x.profile.bio}</p>`);
-            $('#website')
 
-            x.practices.forEach(function(location) {
-              $('#location').append(`<h6>${location.name}</h6><p>${location.visit_address.street}</p><p>${location.visit_address.city} ${location.visit_address.state}. ${location.visit_address.zip}</p>`)
-            })
-
+            for (let i = 0; i >= x.practices.length +1; ++i) {
+              $('#location').append(`<li><h6>${location.name}</h6><p>${location.visit_address.street}</p><p>${location.visit_address.city} ${location.visit_address.state}. ${location.visit_address.zip}</p></li>`)
+              $('#phone').append(`<li><p>Phone: <a href=${x.practices[0].website}>${x.practices[0].website}</a></p></li>`);
+              $('#website').append(`<li><p>Website: <a href=${x.practices[0].website}>${x.practices[0].website}</a></p></li>`);
+            }
 
             if (x.practices[0].accepts_new_patients === true) {
               $('#availability').html(`<h6>Accepting new patients: Yes</h6>`);
