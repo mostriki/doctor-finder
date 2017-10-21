@@ -3,7 +3,7 @@ export class Doctor {
 
   }
 
-  betterDoctorAPI (condition, apiKey) {
+  doctorSearch (condition, apiKey) {
     let promise = new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
       let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=or-portland&user_location=45.5206%2C-122.6774&sort=best-match-asc&skip=0&limit=25&user_key=${apiKey}`;
@@ -21,36 +21,36 @@ export class Doctor {
      // this could be its own function
     promise.then(function(response) {
         let list = JSON.parse(response);
-        if (list.meta.count > 0) {
-          console.log("Doctor count is 1 or more. Huzzah!");
-          // display this name, last name, address, phone number, and website
-          // captures first_name data points.
-          list.data.forEach(function(x) {
-            console.log(x.profile.first_name);
-            $('#name').html(`<h4 >${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h4>`);
-            $('#specialty').html(`<h6>Specialty: ${x.specialties[0].actor}</h6>`);
-            $('#biography').html(`<p>${x.profile.bio}</p>`);
 
-            for (let i = 0; i >= x.practices.length +1; ++i) {
-              $('#location').append(`<li><h6>${location.name}</h6><p>${location.visit_address.street}</p><p>${location.visit_address.city} ${location.visit_address.state}. ${location.visit_address.zip}</p></li>`)
-              $('#phone').append(`<li><p>Phone: <a href=${x.practices[0].website}>${x.practices[0].website}</a></p></li>`);
-              $('#website').append(`<li><p>Website: <a href=${x.practices[0].website}>${x.practices[0].website}</a></p></li>`);
+        if (list.meta.count > 0) {
+console.log("Doctor count is 1 or more. Huzzah!");
+          list.data.forEach(function(x) {
+console.log(x.profile.first_name);
+            $('#name').append(`<li><h4>${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h4></li>`);
+            $('.details').append(`<li><h6>Specialty: ${x.specialties[0].actor}</h6><br><p>${x.profile.bio}</p></li>`);
+
+            x.practices.forEach(function(location) {
+              $('.details').append(`<li><h6>${location.name}</h6><p>${location.visit_address.street}</p><p>${location.visit_address.city} ${location.visit_address.state}. ${location.visit_address.zip}</p></li>`)
+              $('.details').append(`<li><p>Phone: ${location.phone}</p></li>`);
+              $('.detailse').append(`<li><p>Website: <a href=${location.website}>${location.website}</a></p></li>`);
+            })
+
+            for (let i = 0; i >= x.practices.length; ++i) {
+
             }
 
             if (x.practices[0].accepts_new_patients === true) {
-              $('#availability').html(`<h6>Accepting new patients: Yes</h6>`);
+              $('.details').append(`<li><h6>Accepting new patients: Yes</h6></li>`);
             } else {
-              $('#availability').html(`<h6>Accepting new patients: No</h6>`);
+              $('.details').append(`<li><h6>Accepting new patients: No</h6></li>`);
             }
           })
-          debugger;
-          }else {
-        // post this if there are results in search
+          // debugger;
+        }else {
         console.log("There are no Doctors. Boo.");
       }
     }, function(error) {
-      // delivers an error message to the page when the API cannot be called
-      $('#showErrors').text(`There was an error processing your request: ${error.message}`);
+      $('#error').text(`There was an error processing your request: ${error.message}`);
     });
   }
 

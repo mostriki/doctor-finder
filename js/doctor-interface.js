@@ -9,14 +9,14 @@ $(document).ready(function() {
 
     let condition = $('#condition').val();
     $('#condition').val("");
-    $("#details").hide();
+    $(".details").hide();
 
-    doctor.betterDoctorAPI(condition, apiKey);
+    doctor.doctorSearch(condition, apiKey);
   });
 
   $("#name").click(function() {
     event.preventDefault();
-    $("#details").toggle();
+    $(".details").toggle();
   });
 
 });
