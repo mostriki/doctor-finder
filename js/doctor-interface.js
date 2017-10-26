@@ -9,11 +9,6 @@ $(document).ready(function() {
     $('#name').val("");
     let condition = $('#condition').val();
     $('#condition').val("");
-    $(".output2").hide();
     doctor.doctorSearch(name, condition, apiKey);
-  });
-  $(".output1").click(function() {
-    event.preventDefault();
-    $(".output2").toggle();
   });
 });

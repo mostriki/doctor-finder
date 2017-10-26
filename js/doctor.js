@@ -21,9 +21,7 @@ export class Doctor {
      // this could be its own function
     promise.then(function(response) {
         let list = JSON.parse(response);
-        // debugger;
         if (list.meta.count > 0) {
-          // console.log("Doctor count is 1 or more. Huzzah!");
           list.data.forEach(function(x) {
             $('.output').append(`<li><h4>${x.profile.first_name} ${x.profile.last_name}, ${x.profile.title}</h4></li>`);
             $('.output').append(`<li><h6>${x.specialties[0].actor}</h6><p>${x.profile.bio}</p></li>`);
@@ -33,9 +31,9 @@ export class Doctor {
               $('.output').append(`<li><p>Website: <a href=${location.website}>${location.website}</a></p></li>`);
             })
             if (x.practices[0].accepts_new_patients === true) {
-              $('.output').append(`<li><p>Accepting new patients: Yes</p></li>`);
+              $('.output').append(`<li><p>Accepting new patients: Yes</p></li><br>`);
             } else {
-              $('.output').append(`<li><p>Accepting new patients: No</p></li>`);
+              $('.output').append(`<li><p>Accepting new patients: No</p></li><br>`);
             }
           })
         } else {

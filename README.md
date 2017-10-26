@@ -31,17 +31,25 @@ _A website for users to search by medical issue (ie: “sore throat”, "rash", 
 
 ## Setup/Installation Requirements
 
+1. _Create an account and sign up for a free API key at [https://developer.betterdoctor.com/](betterdoctor.com/)._
+
 1. _`$ git clone` [https://github.com/mostriki/doctor-finder](https://github.com/mostriki/doctor-finder)_
 
-2. _`$ cd doctor-finder/`_
+1. _`$ cd doctor-finder/`_
 
-3. _`$ npm install`_
+1. _Add a `.env` file to the root directory._
 
-4. _`$ bower install`_
+1. _Copy and paste the following into the .env file you just created: ` exports.apiKey = "INSERT YOUR API KEY HERE";`_
 
-5. _`$ gulp build`_
+1. _Don't for get to add the API key you just created!_
 
-6. _`$ gulp serve`_
+1. _`$ npm install`_
+
+1. _`$ bower install`_
+
+1. _`$ gulp build`_
+
+1. _`$ gulp serve`_
 
 ## Support and contact details
 
