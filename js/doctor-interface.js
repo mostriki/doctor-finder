@@ -7,11 +7,13 @@ $(document).ready(function() {
     event.preventDefault();
     let doctor = new Doctor();
 
+    let name = $('#name').val();
     let condition = $('#condition').val();
     $('#condition').val("");
+    $('#name').val("");
     $(".details").hide();
 
-    doctor.doctorSearch(condition, apiKey);
+    doctor.doctorSearch(name, condition, apiKey);
   });
 
   $("#name").click(function() {

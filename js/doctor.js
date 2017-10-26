@@ -3,10 +3,10 @@ export class Doctor {
 
   }
 
-  doctorSearch (condition, apiKey) {
+  doctorSearch (name, condition, apiKey) {
     let promise = new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${condition}&location=or-portland&user_location=45.5206%2C-122.6774&sort=best-match-asc&skip=0&limit=25&user_key=${apiKey}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?name=${name}&query=${condition}&location=45.5231%2C-122.6765%2C50&user_location=45.5231%2C-122.6765&skip=0&limit=10&user_key=${apiKey}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
